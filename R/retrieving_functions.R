@@ -1,9 +1,9 @@
 #' Return VIN information from the NHTSA database
 #'
-#' vin_diesel breaks into NHTSA's database to quickly and most furiously return VIN information. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/# 
+#' vin_diesel breaks into NHTSA's database to quickly and most furiously return VIN information. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/#
 #' @import RCurl
 #' @import jsonlite
-#' @param vin vin number in quotes 
+#' @param vin vin number in quotes
 #' @param sec denotes Sys.sleep() between requests if there are multiple, Defaults to 5 seconds
 #' @param tidyup simplifies json response into a dataframe, Defaults to TRUE
 #' @keywords vin
@@ -13,37 +13,34 @@
 
 
 vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
-  
-  tryCatch({
+
     if (tidyup == TRUE) {
       vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
       print(vinme)
       myvin = RCurl::getURL(vinme)
-      super_vin = jsonlite::fromJSON(myvin) 
+      super_vin = jsonlite::fromJSON(myvin)
       Sys.sleep(sec)
       return(as.data.frame(super_vin))
     }
-    
+
     else {
       vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
       print(vinme)
-      myvin = RCurl::getURL(vinme) 
+      myvin = RCurl::getURL(vinme)
       super_vin = jsonlite::fromJSON(myvin)
       Sys.sleep(sec)
       return(super_vin)
     }
-    
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})    
 }
 
 
 
 #' Return EXTENDED VIN information from the NHTSA database
 #'
-#' vin_dieselex breaks into NHTSA's database to quickly and most furiously return VIN information. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/# 
+#' vin_dieselex breaks into NHTSA's database to quickly and most furiously return VIN information. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/#
 #' @import RCurl
 #' @import jsonlite
-#' @param vin vin number in quotes 
+#' @param vin vin number in quotes
 #' @param sec denotes Sys.sleep() between request, Defaults to 5 seconds
 #' @param tidyup simplifies json response into a dataframe, Defaults to TRUE
 #' @keywords vin
@@ -53,9 +50,7 @@ vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
 
 #extended vin decoder
 vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
-  
-  tryCatch({
-    
+
     if (tidyup ==TRUE) {
       vinex = paste0("https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValuesExtended/",vin,"?format=json")
       print(vinex)
@@ -71,17 +66,16 @@ vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
       Sys.sleep(sec)
       return(vinex_ans)
     }
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})     
-  
+
 }
 
 
 #' Return vehcile type by id from the NHTSA database
 #'
-#' vin_dieseltype returns vehicle types associated with a makeid. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/# 
+#' vin_dieseltype returns vehicle types associated with a makeid. More information on the NHTSA API is available at https://vpic.nhtsa.dot.gov/api/#
 #' @import RCurl
 #' @import jsonlite
-#' @param vin makeid in quotes 
+#' @param vin makeid in quotes
 #' @param tidyup simplifies json response into a dataframe, Defaults to TRUE
 #' @keywords vin
 #' @export
@@ -89,9 +83,8 @@ vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
 #' vin_dieseltype("18697", tidyup = TRUE)
 
 vin_dieseltype = function (makeid, tidyup = TRUE) {
-  
-  tryCatch({
-    
+
+
     if (tidyup ==TRUE) {
       vinex = paste0("https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/GetVehicleTypesForMakeId/450?format=json")
       print(vinex)
@@ -104,7 +97,7 @@ vin_dieseltype = function (makeid, tidyup = TRUE) {
       vinex_ans = RCurl::getURL(vinex)
       vinex_ans = jsonlite::fromJSON(vinex_ans)
     }
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+
 }
 
 
@@ -118,11 +111,9 @@ vin_dieseltype = function (makeid, tidyup = TRUE) {
 #' @keywords vin
 #' @export
 #' @examples
-#' fuel_build(18697) 
+#' fuel_build(18697)
 fuel_build = function(vinid) {
-  
-  tryCatch({ 
-    
+
     return(
       cbind(
         as.data.frame(
@@ -140,12 +131,11 @@ fuel_build = function(vinid) {
           )
         )
       )
-      
-      
-      
+
+
+
     )
-    
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+
 }
 
 
@@ -164,36 +154,35 @@ fuel_build = function(vinid) {
 #' vin_thief("1G2HX54K724118697", vector.transform = TRUE, sep = ",")
 
 vin_thief = function(vin,sec = 5,vector.transform = T, sep = "-") {
-  
-  tryCatch({
+
     if (vector.transform == TRUE) {
       vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
       print(vinme)
       myvin = RCurl::getURL(vinme)
       Sys.sleep(sec)
-      super_vin = jsonlite::fromJSON(myvin) 
-      model_year = super_vin$Results$ModelYear 
-      make = super_vin$Results$Make 
+      super_vin = jsonlite::fromJSON(myvin)
+      model_year = super_vin$Results$ModelYear
+      make = super_vin$Results$Make
       model = super_vin$Results$Model
       unique_id = paste(model_year, make, model, sep = sep)
       return(tolower(unique_id))
     }
-    
+
     else {
       vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
       print(vinme)
       myvin = RCurl::getURL(vinme)
       Sys.sleep(sec)
-      super_vin = jsonlite::fromJSON(myvin) 
-      model_year = super_vin$Results$ModelYear 
-      make = super_vin$Results$Make 
+      super_vin = jsonlite::fromJSON(myvin)
+      model_year = super_vin$Results$ModelYear
+      make = super_vin$Results$Make
       model = super_vin$Results$Model
       return(
         list(tolower(model_year, make, model))
       )
     }
-    
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})    
+
+
 }
 
 
@@ -210,3 +199,30 @@ vin_batcher = function(vinlist) {
   vinlist = paste(vinlist, collapse=";")
   return(vinlist)
 }
+
+
+
+
+#' vin_row: Retrieves rows for vin mpg lookup from fueleconomy.com
+#'
+#' Input make model and year to retrieve matching list with row ids
+#' @param year vehicle year
+#' @param make vehicle make
+#' @param model vehicle model
+#' @keywords vin
+#' @export
+#' @examples
+#' vin_row("2015", "honda", "civic")
+
+
+vin_row = function(year, make, model) {
+  suber = paste('options?year=',year,'&make=',make,'&model=',model,
+                sep='')
+  print(suber)
+  response = feQuery(baseurl='http://www.fueleconomy.gov/ws/rest/vehicle/menu/', paste(suber)
+  )
+  out = xmlToDataFrame(response)
+}
+
+
+
