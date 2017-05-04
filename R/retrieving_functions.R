@@ -15,7 +15,8 @@
 vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
 
     if (tidyup == TRUE) {
-      vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
+      vinme = paste0('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/',vin,'?format=json')
+
       print(vinme)
       myvin = RCurl::getURL(vinme)
       super_vin = jsonlite::fromJSON(myvin)
@@ -24,7 +25,7 @@ vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
     }
 
     else {
-      vinme = paste0('https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValues/',vin,'?format=json')
+      vinme = paste0('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/',vin,'?format=json')
       print(vinme)
       myvin = RCurl::getURL(vinme)
       super_vin = jsonlite::fromJSON(myvin)
@@ -52,7 +53,7 @@ vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
 vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
 
     if (tidyup ==TRUE) {
-      vinex = paste0("https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValuesExtended/",vin,"?format=json")
+      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ decodevinvalues/",vin,"?format=json")
       print(vinex)
       vinex_ans = RCurl::getURL(vinex)
       vinex_ans = jsonlite::fromJSON(vinex_ans)
@@ -60,7 +61,7 @@ vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
       return(as.data.frame(vinex_ans))
     }
     else {
-      vinex = paste0("https://vpiclist.cdan.dot.gov/vpiclistapi/vehicles/DecodeVinValuesExtended/",vin,"?format=json")
+      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ decodevinvalues/",vin,"?format=json")
       vinex_ans = RCurl::getURL(vinex)
       vinex_ans = jsonlite::fromJSON(vinex_ans)
       Sys.sleep(sec)
