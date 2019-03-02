@@ -55,7 +55,7 @@ vin_diesel = function(vin,sec = 5,tidyup = TRUE) {
 vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
 
     if (tidyup ==TRUE) {
-      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ decodevinvalues/",vin,"?format=json")
+      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ DecodeVinExtended/",vin,"?format=json")
       print(vinex)
       vinex_ans = httr::GET(vinex)
       vinex_ans = httr::content(vinex_ans, as = "text")
@@ -64,7 +64,7 @@ vin_dieselex = function (vin,sec = 5, tidyup = TRUE) {
       return(as.data.frame(vinex_ans))
     }
     else {
-      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ decodevinvalues/",vin,"?format=json")
+      vinex = paste0("https://vpic.nhtsa.dot.gov/api/vehicles/ DecodeVinExtended/",vin,"?format=json")
       vinex_ans = httr::GET(vinex)
       vinex_ans = httr::content(vinex_ans, as = "text")
       vinex_ans = jsonlite::fromJSON(vinex_ans)
