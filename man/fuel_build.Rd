@@ -13,7 +13,6 @@ fuel_build(vinid)
 Retrieve vehicle fuel economy by vehicle ID & Retrieve average fuel economy from My MPG by vehicle ID in dataframe format merged
 }
 \examples{
-fuel_build(18697) 
+fuel_build(18697)
 }
 \keyword{vin}
-

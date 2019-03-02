@@ -16,4 +16,3 @@ Input a list of VINS to return a vector semicolon separated
 vin_batcher(c("1G2HX54K724118697","1G2HX54K724118696")) #save as csv and copy paste values into: https://vpic.nhtsa.dot.gov/api/
 }
 \keyword{vin}
-

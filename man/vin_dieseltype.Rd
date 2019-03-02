@@ -18,4 +18,3 @@ vin_dieseltype returns vehicle types associated with a makeid. More information 
 vin_dieseltype("18697", tidyup = TRUE)
 }
 \keyword{vin}
-

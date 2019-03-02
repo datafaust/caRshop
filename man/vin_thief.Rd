@@ -22,4 +22,3 @@ String returned is useful for feeding into other api's that look up on model and
 vin_thief("1G2HX54K724118697", vector.transform = TRUE, sep = ",")
 }
 \keyword{vin}
-

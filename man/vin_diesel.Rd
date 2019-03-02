@@ -20,4 +20,3 @@ vin_diesel breaks into NHTSA's database to quickly and most furiously return VIN
 vin_diesel("1G2HX54K724118697", sec = 1, tidyup = T)
 }
 \keyword{vin}
-
